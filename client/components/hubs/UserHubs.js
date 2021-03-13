@@ -12,7 +12,6 @@ class UserHubs extends Component {
   render() {
     const hubs = this.props.hubs || []
     const nodes = hubs.nodes || []
-    console.log(hubs)
     if (!hubs) {
       return <div>Loading...</div>
     }

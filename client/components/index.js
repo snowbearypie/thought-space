@@ -11,6 +11,7 @@ export {default as SingleHub} from './hubs/SingleHub'
 export {default as SingleNode} from './hubs/SingleNode'
 export {default as AddHub} from './hubs/AddHub'
 export {default as AddNode} from './hubs/AddNode'
+export {default as UpdateHub} from './hubs/UpdateHub'
 
 export {HubForm} from './hubs/HubForm'
 export {NodeForm} from './hubs/NodeForm'

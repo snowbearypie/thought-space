@@ -112,3 +112,17 @@ router.delete('/:hubId', async (req, res, next) => {
     next(error)
   }
 })
+
+// PUT /api/hubs/:hubId
+router.put('/:hubId', async (req, res, next) => {
+  try {
+    const hub = await Hub.findByPk(req.params.hubId)
+    if (!hub) {
+      res.send(`This hub doesn't exist`)
+    }
+    const updatedHub = await hub.update(req.body)
+    res.status(201).send(updatedHub)
+  } catch (error) {
+    next(error)
+  }
+})

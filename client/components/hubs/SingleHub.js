@@ -3,28 +3,37 @@ import {connect} from 'react-redux'
 import {fetchHub} from '../../store/singleHub'
 import {Link} from 'react-router-dom'
 import AddNode from './AddNode'
+import UpdateHub from './UpdateHub'
 import {deleteHub} from '../../store/hub'
 
 class SingleHub extends Component {
   constructor() {
     super()
     this.state = {
-      renderForm: false
+      renderAddForm: false,
+      renderUpdateForm: false
     }
-    this.renderFormChange = this.renderFormChange.bind(this)
+    this.renderAddFormChange = this.renderAddFormChange.bind(this)
+    this.renderUpdateFormChange = this.renderUpdateFormChange.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
   }
 
-  renderFormChange() {
-    if (this.state.renderForm) {
-      this.setState({renderForm: false})
+  renderAddFormChange() {
+    if (this.state.renderAddForm) {
+      this.setState({renderAddForm: false})
     }
-    this.setState({renderForm: true})
+    this.setState({renderAddForm: true})
+  }
+
+  renderUpdateFormChange() {
+    if (this.state.renderUpdateForm) {
+      this.setState({renderUpdateForm: false})
+    }
+    this.setState({renderUpdateForm: true})
   }
 
   handleDelete(evt) {
     evt.preventDefault()
-    console.log(this.props)
     const deletedHub = this.props.singleHub
     this.props.deleteHub(deletedHub)
   }
@@ -37,7 +46,6 @@ class SingleHub extends Component {
     const hub = this.props.singleHub || {}
     const nodes = this.props.singleHub.nodes || []
     const author = hub.user || {}
-    console.log(hub)
     if (!hub) {
       return <div>Loading...</div>
     }
@@ -54,11 +62,18 @@ class SingleHub extends Component {
             </Link>
           </div>
         ))}
-        {this.state.renderForm ? (
+        {this.state.renderAddForm ? (
           <AddNode hubId={hub.id} />
         ) : (
-          <button type="button" onClick={this.renderFormChange}>
+          <button type="button" onClick={this.renderAddFormChange}>
             Add Node
+          </button>
+        )}
+        {this.state.renderUpdateForm ? (
+          <UpdateHub hub={hub} hubId={hub.id} />
+        ) : (
+          <button type="button" onClick={this.renderUpdateFormChange}>
+            Update Node
           </button>
         )}
         <button className="button" type="button" onClick={this.handleDelete}>

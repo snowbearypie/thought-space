@@ -7,6 +7,7 @@ import history from '../history'
 const GET_HUBS = 'GET_HUBS'
 const ADD_HUB = 'ADD_HUB'
 const DELETE_HUB = 'DELETE_HUB'
+const UPDATE_HUB = 'UPDATE_HUB'
 
 /**
  * INITIAL STATE
@@ -19,6 +20,7 @@ const initialState = []
 const _getHubs = hubs => ({type: GET_HUBS, hubs})
 const _addHub = hub => ({type: ADD_HUB, hub})
 const _deleteHub = hub => ({type: DELETE_HUB, hub})
+const _updateHub = hub => ({type: UPDATE_HUB, hub})
 
 /**
  * THUNK CREATORS
@@ -50,6 +52,14 @@ export const deleteHub = hub => {
   }
 }
 
+export const updateHub = hub => {
+  return async dispatch => {
+    const {data} = await axios.put(`/api/hubs/${hub.id}`, hub)
+    dispatch(_updateHub(data))
+    history.push('/hubs')
+  }
+}
+
 /**
  * REDUCER
  */
@@ -61,6 +71,13 @@ export default function(state = initialState, action) {
       return [...state, action.hub]
     case DELETE_HUB:
       return state.filter(hub => hub.id !== action.hub.id)
+    case UPDATE_HUB:
+      return state.map(hub => {
+        if (hub.id === action.hub.id) {
+          hub = action.hub
+        }
+        return hub
+      })
     default:
       return state
   }

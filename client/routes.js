@@ -9,7 +9,8 @@ import {
   HubNodes,
   SingleHub,
   SingleNode,
-  AddHub
+  AddHub,
+  UpdateHub
 } from './components/index'
 
 /**
@@ -40,6 +41,7 @@ class Routes extends Component {
             <Route exact path="/hubs" component={UserHubs} />
             <Route exact path="/hubs/add" component={AddHub} />
             <Route exact path="/hubs/:hubId" component={SingleHub} />
+            <Route exact path="/hubs/:hubId/update" component={UpdateHub} />
             <Route exact path="/nodes" component={HubNodes} />
             <Route exact path="/nodes/:nodeId" component={SingleNode} />
           </Switch>
