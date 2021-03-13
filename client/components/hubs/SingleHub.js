@@ -54,9 +54,9 @@ class SingleHub extends Component {
         <h3 className="singleHub-name">{hub.name}</h3>
         <h4>By: {author.displayName}</h4>
         <p className="singleHub-description">{hub.description}</p>
+        <h2>Nodes:</h2>
         {nodes.map(node => (
           <div className="node-card" key={node.id}>
-            <h2>Nodes:</h2>
             <Link to={`/nodes/${node.id}`}>
               <h3 className="node-name">{node.name}</h3>
             </Link>
@@ -73,7 +73,7 @@ class SingleHub extends Component {
           <UpdateHub hub={hub} hubId={hub.id} />
         ) : (
           <button type="button" onClick={this.renderUpdateFormChange}>
-            Update Node
+            Update Hub
           </button>
         )}
         <button className="button" type="button" onClick={this.handleDelete}>

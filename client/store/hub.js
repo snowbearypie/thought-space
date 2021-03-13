@@ -47,7 +47,7 @@ export const addHub = hub => async dispatch => {
 export const deleteHub = hub => {
   return async dispatch => {
     await axios.delete(`/api/hubs/${hub.id}`)
-    dispatch(deleteHub(hub))
+    dispatch(_deleteHub(hub))
     history.push('/hubs')
   }
 }

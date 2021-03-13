@@ -70,3 +70,31 @@ router.post('/', async (req, res, next) => {
     next(error)
   }
 })
+
+// DELETE /api/nodes/:nodeId
+router.delete('/:nodeId', async (req, res, next) => {
+  try {
+    const node = await Node.findByPk(req.params.nodeId)
+    if (!node) {
+      res.send(`This node doesn't exist`)
+    }
+    await node.destroy()
+    res.status(204).send('Successfully deleted!')
+  } catch (error) {
+    next(error)
+  }
+})
+
+// PUT /api/nodes/:nodeId
+router.put('/:nodeId', async (req, res, next) => {
+  try {
+    const node = await Node.findByPk(req.params.nodeId)
+    if (!node) {
+      res.send(`This node doesn't exist`)
+    }
+    const updatedNode = await node.update(req.body)
+    res.status(201).send(updatedNode)
+  } catch (error) {
+    next(error)
+  }
+})
