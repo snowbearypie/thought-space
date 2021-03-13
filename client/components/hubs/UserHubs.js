@@ -11,8 +11,8 @@ class UserHubs extends Component {
 
   render() {
     const hubs = this.props.hubs || []
-    const author = hubs.user || {}
     const nodes = hubs.nodes || []
+    console.log(hubs)
     if (!hubs) {
       return <div>Loading...</div>
     }
@@ -23,7 +23,6 @@ class UserHubs extends Component {
             <Link to={`/hubs/${hub.id}`}>
               <h2 className="hub-name">{hub.name}</h2>
             </Link>
-            <h4>By: {author.displayName}</h4>
             <br />
             <h4 className="hub-description">{hub.description}</h4>
             {nodes.map(node => (
@@ -38,7 +37,9 @@ class UserHubs extends Component {
           </div>
         ))}
         <Link to="/hubs/add">
-          <button type="button">Add Hub</button>
+          <button className="button" type="button">
+            Add Hub
+          </button>
         </Link>
       </div>
     )

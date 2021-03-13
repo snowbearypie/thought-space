@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchHub} from '../../store/singleHub'
 import {Link} from 'react-router-dom'
 import AddNode from './AddNode'
+import {deleteHub} from '../../store/hub'
 
 class SingleHub extends Component {
   constructor() {
@@ -11,24 +12,27 @@ class SingleHub extends Component {
       renderForm: false
     }
     this.renderFormChange = this.renderFormChange.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
+
   renderFormChange() {
     if (this.state.renderForm) {
       this.setState({renderForm: false})
     }
     this.setState({renderForm: true})
   }
+
+  handleDelete(evt) {
+    evt.preventDefault()
+    console.log(this.props)
+    const deletedHub = this.props.singleHub
+    this.props.deleteHub(deletedHub)
+  }
+
   componentDidMount() {
     this.props.fetchHub(this.props.match.params.hubId)
   }
-  // handleChange(evt) {
-  //   this.setState({
-  //     [evt.target.name]: evt.target.value
-  //   })
-  // }
-  // handleSubmit(evt) {
-  //   evt.preventDefault()
-  // }
+
   render() {
     const hub = this.props.singleHub || {}
     const nodes = this.props.singleHub.nodes || []
@@ -57,6 +61,9 @@ class SingleHub extends Component {
             Add Node
           </button>
         )}
+        <button className="button" type="button" onClick={this.handleDelete}>
+          Delete Hub
+        </button>
       </div>
     )
   }
@@ -67,7 +74,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchHub: id => dispatch(fetchHub(id))
+  fetchHub: id => dispatch(fetchHub(id)),
+  deleteHub: hub => dispatch(deleteHub(hub))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleHub)

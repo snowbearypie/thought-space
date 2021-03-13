@@ -36,6 +36,10 @@ class AddHub extends Component {
     await this.setState({
       userId: this.props.user.id
     })
+    if (this.state.isPrivate === 'public') {
+      this.state.isPrivate = false
+    }
+    this.state.isPrivate = true
     const defaultHub = defaultState
     await this.props.addHub({...this.state}).then(this.setState({defaultHub}))
   }

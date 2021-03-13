@@ -32,12 +32,11 @@ export const HubForm = props => (
     <label htmlFor="hub-isPrivate">Hub Privacy:</label>
     <select
       name="isPrivate"
-      type="text"
       onChange={props.handleChange}
       value={props.isPrivate}
     >
-      <option value="false">Public</option>
-      <option value="true">Private</option>
+      <option value="private">Private</option>
+      <option value="public">Public</option>
     </select>
     <br />
 

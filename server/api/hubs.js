@@ -3,6 +3,7 @@ const {User, Hub, Node} = require('../db/models')
 module.exports = router
 
 //GET /api/hubs
+//Get all of the user's hubs
 router.get('/', async (req, res, next) => {
   try {
     let hubs
@@ -32,13 +33,13 @@ router.get('/', async (req, res, next) => {
             id: req.session.guestHubId
           }
         })
-        console.log(hubs)
       }
       if (!req.session.hasHub) {
         console.log('test')
         //if they don't have a hub, make them one
         const guestHub = await Hub.create({
-          name: 'Guest Hub'
+          name: 'Guest Hub',
+          isPrivate: false
         })
         req.session.hasHub = true
         req.session.guestHubId = guestHub.id
@@ -52,6 +53,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // GET /api/hubs/:hubId
+//get a specific hub
 router.get('/:hubId', async (req, res, next) => {
   try {
     const hub = await Hub.findOne({
@@ -70,6 +72,17 @@ router.get('/:hubId', async (req, res, next) => {
     if (!hub) {
       res.status(404).send(`This hub doesn't exist`)
     }
+    //if the hub is set to private
+    if (hub.isPrivate) {
+      //check and see if visitor is logged in
+      if (req.user) {
+        //if logged in, check to see hub requested doesn't belong to visitor
+        if (req.user.id !== hub.userId) {
+          res.status(401).send('You are not authorized to view this hub')
+        }
+      }
+    }
+
     res.send(hub)
   } catch (error) {
     next(error)
@@ -81,6 +94,20 @@ router.post('/', async (req, res, next) => {
   try {
     const newHub = await Hub.create(req.body)
     res.send(newHub)
+  } catch (error) {
+    next(error)
+  }
+})
+
+// DELETE /api/hubs/:hubId
+router.delete('/:hubId', async (req, res, next) => {
+  try {
+    const hub = await Hub.findByPk(req.params.hubId)
+    if (!hub) {
+      res.send(`This hub doesn't exist`)
+    }
+    await hub.destroy()
+    res.status(204).send('Successfully deleted!')
   } catch (error) {
     next(error)
   }
