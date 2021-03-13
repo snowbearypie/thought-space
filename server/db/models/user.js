@@ -26,6 +26,15 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  displayName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  voteCount: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 
