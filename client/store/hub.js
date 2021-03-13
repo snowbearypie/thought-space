@@ -16,7 +16,7 @@ const initialState = []
  * ACTION CREATORS
  */
 const _getHubs = hubs => ({type: GET_HUBS, hubs})
-const _addHub = hub => ({type: GET_HUBS, hub})
+const _addHub = hub => ({type: ADD_HUB, hub})
 
 /**
  * THUNK CREATORS
@@ -34,6 +34,7 @@ export const addHub = hub => async dispatch => {
   try {
     const res = await axios.post('/api/hubs', hub)
     dispatch(_addHub(res.data))
+    history.push('/hubs')
   } catch (err) {
     console.error(err)
   }

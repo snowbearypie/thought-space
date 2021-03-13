@@ -1,26 +1,18 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getHubs} from '../../store/hub'
+import {getHubs, addHub} from '../../store/hub'
+import {HubForm} from './HubForm'
 import {Link} from 'react-router-dom'
 
 class UserHubs extends Component {
-  constructor() {
-    super()
-    this.state = {
-      renderForm: false
-    }
-  }
-  renderHubForm() {
-    if (this.state.renderForm) {
-      this.setState({renderForm: false})
-    }
-    this.setState({renderForm: true})
-  }
   componentDidMount() {
     this.props.loadHubs()
   }
+
   render() {
     const hubs = this.props.hubs || []
+    const author = hubs.user || {}
+    const nodes = hubs.nodes || []
     if (!hubs) {
       return <div>Loading...</div>
     }
@@ -31,10 +23,10 @@ class UserHubs extends Component {
             <Link to={`/hubs/${hub.id}`}>
               <h2 className="hub-name">{hub.name}</h2>
             </Link>
-            <h4>By: {hub.user.displayName}</h4>
+            <h4>By: {author.displayName}</h4>
             <br />
             <h4 className="hub-description">{hub.description}</h4>
-            {hub.nodes.map(node => (
+            {nodes.map(node => (
               <div className="node-card" key={node.id}>
                 <h2>Nodes:</h2>
                 <Link to={`/nodes/${node.id}`}>
@@ -45,6 +37,9 @@ class UserHubs extends Component {
             <hr />
           </div>
         ))}
+        <Link to="/hubs/add">
+          <button type="button">Add Hub</button>
+        </Link>
       </div>
     )
   }

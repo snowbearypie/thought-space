@@ -60,3 +60,13 @@ router.get('/:nodeId', async (req, res, next) => {
     next(error)
   }
 })
+
+// POST /api/nodes
+router.post('/', async (req, res, next) => {
+  try {
+    const newNode = await Node.create(req.body)
+    res.send(newNode)
+  } catch (error) {
+    next(error)
+  }
+})

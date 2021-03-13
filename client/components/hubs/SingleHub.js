@@ -2,12 +2,22 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchHub} from '../../store/singleHub'
 import {Link} from 'react-router-dom'
+import AddNode from './AddNode'
 
 class SingleHub extends Component {
-  // constructor() {
-  //   super()
-  //   }
-  // }
+  constructor() {
+    super()
+    this.state = {
+      renderForm: false
+    }
+    this.renderFormChange = this.renderFormChange.bind(this)
+  }
+  renderFormChange() {
+    if (this.state.renderForm) {
+      this.setState({renderForm: false})
+    }
+    this.setState({renderForm: true})
+  }
   componentDidMount() {
     this.props.fetchHub(this.props.match.params.hubId)
   }
@@ -40,6 +50,13 @@ class SingleHub extends Component {
             </Link>
           </div>
         ))}
+        {this.state.renderForm ? (
+          <AddNode hubId={hub.id} />
+        ) : (
+          <button type="button" onClick={this.renderFormChange}>
+            Add Node
+          </button>
+        )}
       </div>
     )
   }

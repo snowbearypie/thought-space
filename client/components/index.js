@@ -9,4 +9,10 @@ export {default as UserHubs} from './hubs/UserHubs'
 export {default as HubNodes} from './hubs/HubNodes'
 export {default as SingleHub} from './hubs/SingleHub'
 export {default as SingleNode} from './hubs/SingleNode'
+export {default as AddHub} from './hubs/AddHub'
+export {default as AddNode} from './hubs/AddNode'
+
+export {HubForm} from './hubs/HubForm'
+export {NodeForm} from './hubs/NodeForm'
+
 export {Login, Signup} from './auth-form'

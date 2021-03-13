@@ -4,7 +4,13 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
-import {UserHubs, HubNodes, SingleHub, SingleNode} from './components/index'
+import {
+  UserHubs,
+  HubNodes,
+  SingleHub,
+  SingleNode,
+  AddHub
+} from './components/index'
 
 /**
  * COMPONENT
@@ -23,6 +29,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/hubs" component={UserHubs} />
+        <Route exact path="/hubs/add" component={AddHub} />
         <Route exact path="/hubs/:hubId" component={SingleHub} />
         <Route exact path="/nodes" component={HubNodes} />
         <Route exact path="/nodes/:nodeId" component={SingleNode} />
@@ -31,6 +38,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/home" component={UserHome} />
             <Route exact path="/hubs" component={UserHubs} />
+            <Route exact path="/hubs/add" component={AddHub} />
             <Route exact path="/hubs/:hubId" component={SingleHub} />
             <Route exact path="/nodes" component={HubNodes} />
             <Route exact path="/nodes/:nodeId" component={SingleNode} />
