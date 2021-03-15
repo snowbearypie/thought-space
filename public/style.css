@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Oleo+Script+Swash+Caps&display=swap');
+
 body {
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -11,11 +13,102 @@ label {
 }
 
 nav a {
-  display: inline-block;
-  margin: 1em;
+  text-decoration: none;
+  color: #dbd8dd;
+  font-size: 18px;
+  padding: 0px 15px;
 }
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.navbar {
+  background-image: url('https://images.unsplash.com/photo-1528818955841-a7f1425131b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2089&q=80');
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+}
+
+.hub-container {
+  background-image: url('https://media.npr.org/assets/img/2020/08/27/nasa-goods-real_wide-9168d715c2d4c488d7a0e594b397d7abdd969d9d-s1600-c85.png');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.node-container {
+  background-image: url('https://media.npr.org/assets/img/2020/08/27/nasa-goods-real_wide-9168d715c2d4c488d7a0e594b397d7abdd969d9d-s1600-c85.png');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.singleHub-container {
+  background-image: url('https://media.npr.org/assets/img/2020/08/27/nasa-goods-real_wide-9168d715c2d4c488d7a0e594b397d7abdd969d9d-s1600-c85.png');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.singleNode-container {
+  background-image: url('https://media.npr.org/assets/img/2020/08/27/nasa-goods-real_wide-9168d715c2d4c488d7a0e594b397d7abdd969d9d-s1600-c85.png');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar-animations {
+  color: #80c0c0;
+  font-size: 1.2em;
+}
+
+.navbar1 {
+  color: #408080;
+}
+
+.hub-card {
+  color: #80c0c0;
+}
+
+.hub-card a {
+  color: #8040ff;
+}
+
+.node-card {
+  color: #80c0c0;
+}
+
+.node-card a {
+  color: #8040ff;
+}
+
+.singleNode-name {
+  color: #80c0c0;
+}
+
+.singleNode-description {
+  color: #80c0c0;
+}
+
+.landing {
+  display: flex;
+}
+
+.singleHub-name {
+  color: #8040ff;
+}
+
+.node-title {
+  color: #404080;
+}
+
+.node-name {
+  color: #804080;
 }

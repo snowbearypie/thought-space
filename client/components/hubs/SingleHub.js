@@ -51,34 +51,36 @@ class SingleHub extends Component {
     }
     return (
       <div className="singleHub-container">
-        <h3 className="singleHub-name">{hub.name}</h3>
-        <h4>By: {author.displayName}</h4>
-        <p className="singleHub-description">{hub.description}</p>
-        <h2>Nodes:</h2>
-        {nodes.map(node => (
-          <div className="node-card" key={node.id}>
-            <Link to={`/nodes/${node.id}`}>
-              <h3 className="node-name">{node.name}</h3>
-            </Link>
-          </div>
-        ))}
-        {this.state.renderAddForm ? (
-          <AddNode hubId={hub.id} />
-        ) : (
-          <button type="button" onClick={this.renderAddFormChange}>
-            Add Node
+        <div className="hub-card">
+          <h3 className="singleHub-name">{hub.name}</h3>
+          <h4 className="singleHub-name">By: {author.displayName}</h4>
+          <p className="singleHub-description">{hub.description}</p>
+          <h2 className="node-title">Nodes:</h2>
+          {nodes.map(node => (
+            <div className="node-card" key={node.id}>
+              <Link to={`/nodes/${node.id}`}>
+                <h3 className="node-name">{node.name}</h3>
+              </Link>
+            </div>
+          ))}
+          {this.state.renderAddForm ? (
+            <AddNode hubId={hub.id} />
+          ) : (
+            <button type="button" onClick={this.renderAddFormChange}>
+              Add Node
+            </button>
+          )}
+          {this.state.renderUpdateForm ? (
+            <UpdateHub hub={hub} hubId={hub.id} />
+          ) : (
+            <button type="button" onClick={this.renderUpdateFormChange}>
+              Update Hub
+            </button>
+          )}
+          <button className="button" type="button" onClick={this.handleDelete}>
+            Delete Hub
           </button>
-        )}
-        {this.state.renderUpdateForm ? (
-          <UpdateHub hub={hub} hubId={hub.id} />
-        ) : (
-          <button type="button" onClick={this.renderUpdateFormChange}>
-            Update Hub
-          </button>
-        )}
-        <button className="button" type="button" onClick={this.handleDelete}>
-          Delete Hub
-        </button>
+        </div>
       </div>
     )
   }

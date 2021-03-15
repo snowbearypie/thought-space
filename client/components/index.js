@@ -13,6 +13,7 @@ export {default as AddHub} from './hubs/AddHub'
 export {default as AddNode} from './hubs/AddNode'
 export {default as UpdateHub} from './hubs/UpdateHub'
 
+export {LandingPage} from './LandingPage'
 export {HubForm} from './hubs/HubForm'
 export {NodeForm} from './hubs/NodeForm'
 

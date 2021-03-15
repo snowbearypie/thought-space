@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {getHubs, addHub} from '../../store/hub'
 import {HubForm} from './HubForm'
 import {Link} from 'react-router-dom'
+import {useTransition, animated} from 'react-spring'
 
 class UserHubs extends Component {
   componentDidMount() {
@@ -11,7 +12,7 @@ class UserHubs extends Component {
 
   render() {
     const hubs = this.props.hubs || []
-    const nodes = hubs.nodes || []
+    // const nodes = hubs.nodes || []
     if (!hubs) {
       return <div>Loading...</div>
     }
@@ -24,15 +25,14 @@ class UserHubs extends Component {
             </Link>
             <br />
             <h4 className="hub-description">{hub.description}</h4>
-            {nodes.map(node => (
+            {/* {nodes.map(node => (
               <div className="node-card" key={node.id}>
                 <h2>Nodes:</h2>
                 <Link to={`/nodes/${node.id}`}>
                   <h3 className="node-name">{node.name}</h3>
                 </Link>
               </div>
-            ))}
-            <hr />
+            ))} */}
           </div>
         ))}
         <Link to="/hubs/add">

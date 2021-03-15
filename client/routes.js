@@ -10,9 +10,11 @@ import {
   SingleHub,
   SingleNode,
   AddHub,
-  UpdateHub
+  UpdateHub,
+  LandingPage
 } from './components/index'
 
+import AnimationTest from './components/parallax-backgrounds/AnimationTest'
 /**
  * COMPONENT
  */
@@ -27,6 +29,8 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/test" component={AnimationTest} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/hubs" component={UserHubs} />
